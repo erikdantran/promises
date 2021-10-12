@@ -30,19 +30,6 @@ var getGitHubProfile = function (user, callback) {
 };
 
 
-// var pluckFirstLineFromFileAsync = function (filePath) {
-//   var readFile = Promise.promisify(fs.readFile);
-
-//   readFile(filePath, 'utf8')
-//     .then((text) => {
-//       var firstLine = text.toString().split('\n')[0];
-//       return firstLine;
-//     })
-//     .catch(err => {
-//       // callback(err);
-//     });
-// };
-
 var getGitHubProfileAsync = Promise.promisify(getGitHubProfile);
 
 
@@ -54,7 +41,7 @@ var generateRandomToken = function(callback) {
   });
 };
 
-var generateRandomTokenAsync; // TODO
+var generateRandomTokenAsync = Promise.promisify(generateRandomToken);
 
 
 // (3) Asyncronous file manipulation
@@ -68,11 +55,11 @@ var readFileAndMakeItFunny = function(filePath, callback) {
       })
       .join('\n');
 
-    callback(funnyFile);
+    callback(null, funnyFile);
   });
 };
 
-var readFileAndMakeItFunnyAsync; // TODO
+var readFileAndMakeItFunnyAsync = Promise.promisify(readFileAndMakeItFunny);
 
 // Export these functions so we can test them and reuse them in later exercises
 module.exports = {
